@@ -45,9 +45,10 @@ The final, ensembled model is weighted according to the user-defined *yweight* t
 * **Part 2. Optimizing Parameters & Forecasting Dish Subscribers** - Test parameter adjustments and create final forecasts for comparison against Professor Fader's 14.5% MAPE.
 
 ## Model Results
-
+Our ensembled GRU performs extremely well, consistently delivering a **< 7% out-of-sample MAPE** when forecasting over a similar time period.
 
 
 
 # Caveats
-Can’t tell a story unable to answer additional quetsions
+* Can’t tell a story unable to answer additional quetsions
+* 
