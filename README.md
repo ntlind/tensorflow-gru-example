@@ -1,4 +1,4 @@
-# Forecasting-Dish-Subscribers-Using-Gated-Recurrent-Units
+# Forecasting Dish Subscribers Using Gated Recurrent Units
 
 ## Introduction
 To date, Professor Fader's "Applied Probability Models in Marketing" class has been the most impactful and rewarding course that I've taken while in business school. He is a master at weaving engaging stories using parametric modeling and, after seeing his magic up-close over the previous semester, I found myself wondering how his parametric models would compete with the new-age machine learning algorithms that are gathering steam in the private sector. In this repository, I will build a recurrent neural network (specifically a Gated Recurrent Unit, or GRU) to test its effectiveness against Fader's parametric models as described in his *Valuing Subscription-Based Businesses Using Publicly Disclosed Customer Data*.
@@ -34,6 +34,15 @@ To test these hypotheses, we will pull data from a variety of first and third-pa
   * **Seasonality** - Dish’s annual reports note that most subscriber activations occur in the second half of each calendar year. This covariate involves the inclusion of three separate indicators (one for Q1, one for Q2, and one for Q3) 
 
 ## Model Methodology
+To predict acquired customers over time, we will create two separate GRU layers and merge them into one ensembled model:
+* **Endogeneous Layer** - Uses lagged time-series variables (the number of which is set by the user through *span*) to construct a time-series model of acquired customers. 
+* **Exogeneous Layer** - Uses the covariates listed above (GDP, etc.) to predict customer acquisitions over time.
+
+The final, ensembled model is weighted according to the user-defined *yweight* to empower users with the ability to control variate importance during the modeling process. The model's *predictions* (in-sample; IS) and *forecasts* (out-of-sample; OOS) are then visualized and presented with the model's IS and OOS MAPE terms for easy comparison.
+
+## Repository Structure
+* **Part 1. Building Dual GRUs** - Build the GRUs cell-by-cell and show that they produce the correct visualizations and error terms.  
+* **Part 2. Optimizing Parameters & Forecasting Dish Subscribers** - Test parameter adjustments and create final forecasts for comparison against Professor Fader's 14.5% MAPE.
 
 ## Model Results
 
