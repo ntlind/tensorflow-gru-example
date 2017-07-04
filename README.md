@@ -1,1 +1,38 @@
-# Forecasting-Dish-Subscribers-Using-Gated-Recurrent-Units-GRUs-
+# Forecasting-Dish-Subscribers-Using-Gated-Recurrent-Units
+
+## Introduction
+To date, Professor Fader's "Applied Probability Models in Marketing" class has been the most impactful and rewarding course that I've taken while in business school. He is a master at weaving engaging stories using parametric modeling and, after seeing his magic up-close over the previous semester, I found myself wondering how his parametric models would compete with the new-age machine learning algorithms that are gathering steam. In this repository, I will build a recurrent neural network (specifically a Gated Recurrent Unit, or GRU) to test its effectiveness against Fader's parametric models as described in *Valuing Subscription-Based Businesses Using Publicly Disclosed Customer Data*.
+
+## Background
+Dish Network is a broadcast satellite service provider based out of Englewood, Colorado that has grown to serve over 14.2M subscribers since its inception in 1981. In this analysis, we will explore the number of pay-TV subscribers that Dish has added over the past decade.
+
+Our initial dataset contained 53,819 observations of pay-TV customer acquisition data that were scraped from Dish Network’s annual investor reports. This data is:
+* Discrete
+* Asymmetric
+* Bound between 0 and positive infinity (theoretically, there was no discernable limit on the number of customers that could be acquired in a single quarter)
+* Aggregated by month and quarter
+* “Count” data, as opposed to “timing” or “choice” data
+* Ranging in date from Q1 1996 to Q4 2016
+* Contractual (customers would have to call Dish and pick up their equipment to begin using Dish’s service, so Dish would be notified immediately in the case of a customer acquisition)
+
+## Covariate Selection
+We begin by taking a step back and thinking from the perspective of a potential Dish customer: given all the digital media alternatives that exist on today’s market, what kind of customer would choose to become a Dish subscriber? We hypothesize that Dish customers were swayed by one or more of the following reasons:
+* **They are “cost conscious”** – Dish costs $54.99/year, compared to $95.88 for Hulu, $120 for Netflix, and $65.99 for Comcast , 
+* **They are interested in Dish’s unique technological capabilities** – Dish has multiple innovative products on the market that may have spurred customer demand for their subscription services
+* **They were influenced by ad spend or other promotions in their local area**
+
+To test these hypotheses, we will pull data from a variety of first and third-party sources to use as covariates within our model. These metrics are as follows:
+* **Economic**
+  * **GDP Growth Rate** - Subscriptions will increase in periods of high economic growth (lag covariates were also included to measure the effect that GDP growth had on subsequent periods)
+  * **Recession Indicator** - Customer spending on recreational activities decreased dramatically during the Great Recession (Q4 2007 – Q2 2009)
+* **Customer Preference**
+
+  * **Sling TV Indicator** - Sling TV’s delivery medium, low price point, and specially-selected offerings will attract an entirely new market of customers who desire access to a select group of premium channels at an affordable price
+* **Other**
+  * **Seasonality** - Dish’s annual reports note that most subscriber activations occur in the second half of each calendar year. This covariate involves the inclusion of three separate indicators (one for Q1, one for Q2, and one for Q3) 
+
+
+
+
+# Caveats
+Can’t tell a story unable to answer additional quetsions
