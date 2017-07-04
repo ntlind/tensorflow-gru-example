@@ -1,7 +1,7 @@
 # Forecasting Dish Subscribers Using Gated Recurrent Units
 
 ## Introduction
-To date, Professor Fader's "Applied Probability Models in Marketing" class has been the most impactful and rewarding course that I've taken while in business school. He is a master at weaving engaging stories using parametric modeling and, after seeing his magic up-close over the previous semester, I found myself wondering how his parametric models would compete with the new-age machine learning algorithms that are gathering steam in the private sector. In this repository, I will build a recurrent neural network (specifically a Gated Recurrent Unit, or GRU) to test its effectiveness against Fader's parametric models as described in his *Valuing Subscription-Based Businesses Using Publicly Disclosed Customer Data*.
+To date, Professor Peter Fader's "Applied Probability Models in Marketing" class has been the most impactful and rewarding course that I've taken while in graduate school. He is a master at weaving engaging stories using parametric modeling and, after seeing his magic up-close over the previous semester, I found myself wondering how his parametric models would compete with the new-age machine learning algorithms that are gathering steam in the private sector. In this repository, I will build a recurrent neural network (specifically a Gated Recurrent Unit, or GRU) to test its effectiveness against Fader's parametric models as described in his *Valuing Subscription-Based Businesses Using Publicly Disclosed Customer Data*.
 
 ## Background
 Dish Network is a broadcast satellite service provider based out of Englewood, Colorado that has grown to serve over 14.2M subscribers since its inception in 1981. In this analysis, we will explore the number of pay-TV subscribers that Dish has added over the past decade and compare our findings to Professor Fader's previous analysis, where he reported a 14.5% MAPE when predicting 6 periods out (<https://papers.ssrn.com/sol3/papers.cfm?abstract_id=2701093>).
@@ -35,7 +35,7 @@ To test these hypotheses, we will pull data from a variety of first and third-pa
 
 ## Model Methodology
 To predict acquired customers over time, we will create two separate GRU layers and merge them into one ensembled model:
-* **Endogeneous Layer** - Uses lagged time-series variables (the number of which is set by the user through *span*) to construct a time-series model of acquired customers. 
+* **Endogenous Layer** - Uses lagged time-series variables (the number of which is set by the user through *span*) to construct a time-series model of acquired customers. 
 * **Exogeneous Layer** - Uses the covariates listed above (GDP, etc.) to predict customer acquisitions over time.
 
 The final, ensembled model is weighted according to the user-defined *yweight* to empower users with the ability to control variate importance during the modeling process. The model's *predictions* (in-sample; IS) and *forecasts* (out-of-sample; OOS) are then visualized and presented with the model's IS and OOS MAPE terms for easy comparison.
@@ -47,10 +47,10 @@ The final, ensembled model is weighted according to the user-defined *yweight* t
 ## Model Results
 Our ensembled GRU performs extremely well, consistently delivering a **< 7% out-of-sample MAPE** when forecasting over a similar time period. Based on these results, we'd prefer to use RNNs over the Weibull-Gamma when modeling time-series data with exogeneous covariates.
 
-Interestingly enough, our OOS MAPE is consistently below our IS MAPE (~6% vs. ~10%). This may be somewhat explained by the way in which we tuned our modeling parameters: by optimizing for OOS fit and not IS fit, we may have helped our model to ignore unhelpful noise in our training sample. More investigation is needed, but these results certainly look promising.
+Surprisingly, our OOS MAPE is consistently below our IS MAPE (~6% vs. ~10%). This may be somewhat explained by the way in which we tuned our modeling parameters: by optimizing for OOS fit and not IS fit, we may have helped our model to ignore unhelpful noise in our training sample. More investigation is needed, but these results certainly look promising.
 ![Visual of Dual GRU Approach](http://i66.tinypic.com/2nqabz9.png)
 
 # Caveats
 Though our machine learning algorithm seems to have bested Professor Fader's parametric models in this test, there are a few important caveats to this analysis that should be kept in mind: 
-* **Parametric models are useful for more than just forecasting** - Our neural network won't answer the same important quetsions as a well-built parametric model (i.e., how heterogeneous is our customer base?)
-* **This analysis includes additional covariates** - Professor Fader inspired my use of the Seasonality and Recession indicators, but the other features mentioned above were not tested in his analysis. Though these new covariates *were* tested in our second in-class assignment (with a resulting 25% OOS MdAPE), it is difficult to directly compare Fader's original paper to this analysis.  
+* **This analysis includes additional covariates** - Professor Fader inspired my use of the Seasonality and Recession indicators, but the other features mentioned above were not tested in his analysis. Though these new covariates *were* tested in our second in-class assignment (with a resulting 25% OOS MdAPE), it is difficult to directly compare Fader's original paper to this analysis. 
+* **Parametric models are useful for more than just forecasting** - Our neural network won't answer the same important quetsions as a well-built parametric model (i.e., how heterogeneous is our customer base?) 
