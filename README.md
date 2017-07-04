@@ -47,7 +47,7 @@ The final, ensembled model is weighted according to the user-defined *yweight* t
 ## Model Results
 Our ensembled GRU performs extremely well, consistently delivering a **< 7% out-of-sample MAPE** when forecasting over a similar time period. 
 
-![Visual of Dual GRU Approach](https://ibb.co/ddtdVF)
+![Visual of Dual GRU Approach](http://i66.tinypic.com/2nqabz9.png)
 
 # Caveats
 * Can’t tell a story unable to answer additional quetsions
