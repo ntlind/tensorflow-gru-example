@@ -45,10 +45,12 @@ The final, ensembled model is weighted according to the user-defined *yweight* t
 * **Part 2. Optimizing Parameters & Forecasting Dish Subscribers** - Test parameter adjustments and create final forecasts for comparison against Professor Fader's 14.5% MAPE.
 
 ## Model Results
-Our ensembled GRU performs extremely well, consistently delivering a **< 7% out-of-sample MAPE** when forecasting over a similar time period. 
+Our ensembled GRU performs extremely well, consistently delivering a **< 7% out-of-sample MAPE** when forecasting over a similar time period. Based on these results, we'd prefer to use RNNs over the Weibull-Gamma when modeling time-series data with exogeneous covariates.
 
+Interestingly enough, our OOS MAPE is consistently below our IS MAPE (~6% vs. ~10%). This may be somewhat explained by the way in which we tuned our modeling parameters: by optimizing for OOS fit and not IS fit, we may have helped our model to ignore unhelpful noise in our training sample. More investigation is needed, but these results certainly look promising.
 ![Visual of Dual GRU Approach](http://i66.tinypic.com/2nqabz9.png)
 
 # Caveats
-* Can’t tell a story unable to answer additional quetsions
-* 
+Though our machine learning algorithm seems to have bested Professor Fader's parametric models in this test, there are a few important caveats to this analysis that should be kept in mind: 
+* **Parametric models are useful for more than just forecasting** - Our neural network won't answer the same important quetsions as a well-built parametric model (i.e., how heterogeneous is our customer base?)
+* **This analysis includes additional covariates** - Professor Fader inspired my use of the Seasonality and Recession indicators, but the other features mentioned above were not tested in his analysis. Though these new covariates *were* tested in our second in-class assignment (with a resulting 25% OOS MdAPE), it is difficult to directly compare Fader's original paper to this analysis.  
