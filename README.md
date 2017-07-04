@@ -50,7 +50,7 @@ Our ensembled GRU performs extremely well, consistently delivering a **< 7% out-
 Surprisingly, our OOS MAPE is consistently below our IS MAPE (~6% vs. ~10%). This may be somewhat explained by the way in which we tuned our modeling parameters: by optimizing for OOS fit and not IS fit, we may have helped our model to ignore unhelpful noise in our training sample. More investigation is needed, but these results certainly look promising.
 ![Visual of Dual GRU Approach](http://i66.tinypic.com/2nqabz9.png)
 
-See **"Part 2..."** for more details on our final model.
+See **"Part 2..."** for more details on the final model.
 
 # Caveats
 Though our machine learning algorithm seems to have bested Professor Fader's parametric models in this test, there are a few important caveats that should be kept in mind: 
