@@ -29,9 +29,9 @@ To test these hypotheses, I pulled data from a variety of first and third-party 
   * **Consumer Recreational Spending** - We expect subscriptions to increase as consumer recreational spending increases. Consumer recreational spending data scraped from the US Bureau of Economic Analysis.
 * **Customer Preference**
   * **Promotional Subsidies** - Promotion data scraped from Dish Network's 10-Ks. We would expect higher promotional spend to correlate positively with increased customer acquisitions.
-  * **Sling TV Indicator** - Sling TV’s delivery medium, low price point, and specially-selected offerings will attract an entirely new market of customers who desire access to a select group of premium channels at an affordable price
+  * **Sling TV Indicator** - Sling TV’s delivery medium, low price point, and specially-selected offerings will attract an entirely new market of customers who desire access to a select group of premium channels at an affordable price.
 * **Other**
-  * **Seasonality** - Dish’s annual reports note that most subscriber activations occur in the second half of each calendar year. This covariate involves the inclusion of three separate indicators (one for Q1, one for Q2, and one for Q3) 
+  * **Seasonality** - Dish’s annual reports note that most subscriber activations occur in the second half of each calendar year. This covariate involves the inclusion of three separate indicators (one for Q1, one for Q2, and one for Q3). 
 
 ## Model Methodology
 To predict acquired customers over time, we will create two separate GRU layers and merge them into one ensembled model:
