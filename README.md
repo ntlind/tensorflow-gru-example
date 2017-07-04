@@ -38,7 +38,7 @@ To predict acquired customers over time, we will create two separate GRU layers 
 * **Endogenous Layer** - Uses lagged time-series variables (the number of which is set by the user through *span*) to construct a time-series model of acquired customers. 
 * **Exogeneous Layer** - Uses the covariates listed above (GDP, etc.) to predict customer acquisitions over time.
 
-The final, ensembled model is weighted according to the user-defined *yweight* to empower users with the ability to control variate importance during the modeling process. The model's *predictions* (in-sample; IS) and *forecasts* (out-of-sample; OOS) are then visualized and presented with the model's IS and OOS MAPE terms for easy comparison.
+The final, ensembled model is weighted (using *yweight*) to empower users with the ability to control variate importance during the modeling process. The model's *predictions* (in-sample; IS) and *forecasts* (out-of-sample; OOS) are then visualized and presented with the model's IS and OOS MAPE terms for easy comparison.
 
 ## Repository Structure
 * **Part 1. Building Dual GRUs** - Build the GRUs cell-by-cell and show that they produce the correct visualizations and error terms.  
@@ -50,7 +50,9 @@ Our ensembled GRU performs extremely well, consistently delivering a **< 7% out-
 Surprisingly, our OOS MAPE is consistently below our IS MAPE (~6% vs. ~10%). This may be somewhat explained by the way in which we tuned our modeling parameters: by optimizing for OOS fit and not IS fit, we may have helped our model to ignore unhelpful noise in our training sample. More investigation is needed, but these results certainly look promising.
 ![Visual of Dual GRU Approach](http://i66.tinypic.com/2nqabz9.png)
 
+See **Part 2** for more details.
+
 # Caveats
-Though our machine learning algorithm seems to have bested Professor Fader's parametric models in this test, there are a few important caveats to this analysis that should be kept in mind: 
-* **This analysis includes additional covariates** - Professor Fader inspired my use of the Seasonality and Recession indicators, but the other features mentioned above were not tested in his analysis. Though these new covariates *were* tested in our second in-class assignment (with a resulting 25% OOS MdAPE), it is difficult to directly compare Fader's original paper to this analysis. 
-* **Parametric models are useful for more than just forecasting** - Our neural network won't answer the same important quetsions as a well-built parametric model (i.e., how heterogeneous is our customer base?) 
+Though our machine learning algorithm seems to have bested Professor Fader's parametric models in this test, there are a few important caveats that should be kept in mind: 
+* **This analysis includes additional covariates** - Professor Fader inspired my use of the Seasonality and Recession indicators, but the other features mentioned above were not tested in his study. Though these new covariates *were* tested in the Weibull-Gamma through our second in-class assignment (with a resulting 25% OOS MdAPE), it is difficult to directly compare Fader's original forecasts to those presented in this analysis. 
+* **Parametric models are useful for more than just forecasting** - Our neural network won't answer the same important questions as a well-built parametric model (i.e., how heterogeneous is our customer base?) 
