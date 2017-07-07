@@ -44,7 +44,7 @@ The basic steps in this process are as follows:
 
 Here's a visual to describe this approach:
 
-![Forward Chain Example](http://tinypic.com/r/2luqjat/9)
+![Forward Chain Example](https://i.stack.imgur.com/padg4.gif)
 
 
 To predict acquired customers over time, we will create two separate GRU layers and merge them into one ensembled model:
@@ -60,7 +60,7 @@ The final, ensembled model is weighted (using *yweight*) to empower users with t
 ## Model Results
 Our ensembled GRU performs extremely well, consistently delivering a **< 8.5% out-of-sample MAPE** when forecasting over a two-year period. When this error term is compared to the Weibull-Gamma's 18% OOS MAPE, we'd clearly prefer to use GRUs over parametric methods when modeling time-series data with exogeneous covariates.
 
-![Visual of Dual GRU Approach](http://imgur.com/hnBiI6Q)
+![Visual of Dual GRU Approach](http://i.imgur.com/CweA9Hw.png)
 
 This visual was generated using the code in **"Part 2..."**.
 
