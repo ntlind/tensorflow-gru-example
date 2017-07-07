@@ -35,7 +35,7 @@ To test these hypotheses, I pulled data from a variety of first and third-party 
 
 ## Model Methodology
 To predict acquired customers over time, we will create two separate GRU layers and merge them into one ensembled model:
-* **Endogenous Layer** - Uses lagged time-series variables (the number of which is set by the user through *span*) to construct a time-series model of acquired customers. This technique is often referred to as 'forward chaining' in time-series modeling and serves as an alternative to cross-validation.
+* **Endogenous Layer** - Uses lagged time-series variables (the number of which is set by the user through *span*) to construct a time-series model of acquired customers. This technique (developed by Rob Hyndman) is often referred to as 'forward chaining' in time-series modeling and serves as an alternative to cross-validation.
 * **Exogeneous Layer** - Uses the covariates listed above (GDP, etc.) to predict customer acquisitions over time.
 
 The final, ensembled model is weighted (using *yweight*) to empower users with the ability to control variate importance during the modeling process. The model's *predictions* (in-sample; IS) and *forecasts* (out-of-sample; OOS) are then visualized and presented with the model's IS and OOS MAPE terms for easy comparison.
