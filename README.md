@@ -16,7 +16,7 @@ Our initial dataset contained 53,819 observations of pay-TV customer acquisition
 * Ranging in date from Q1 1996 to Q4 2016
 * Contractual (customers would have to call Dish and pick up their equipment to begin using Dish’s service, so Dish would be notified immediately in the case of a customer acquisition)
 
-## Covariate Selection
+## Feature Selection
 We begin by taking a step back and thinking from the perspective of a potential Dish customer: given all the digital media alternatives that exist on today’s market, what kind of customer would choose to become a Dish subscriber? I'd hypothesize that Dish customers were swayed by one or more of the following reasons:
 * **They are “cost conscious”** – Dish costs $54.99/year, compared to $95.88 for Hulu, $120 for Netflix, and $65.99 for Comcast 
 * **They are interested in Dish’s unique technological capabilities** – Dish has multiple innovative products on the market that may have spurred customer demand for their subscription services
@@ -34,26 +34,37 @@ To test these hypotheses, I pulled data from a variety of first and third-party 
   * **Seasonality** - Dish’s annual reports note that most subscriber activations occur in the second half of each calendar year. This covariate involves the inclusion of three separate indicators (one for Q1, one for Q2, and one for Q3). 
 
 ## Model Methodology
-To predict acquired customers over time, we will create two separate GRU layers and merge them into one ensembled model:
-* **Endogenous Layer** - Uses lagged time-series variables (the number of which is set by the user through *span*) to construct a time-series model of acquired customers. This technique (developed by Rob Hyndman) is often referred to as 'forward chaining' in time-series modeling and serves as an alternative to cross-validation.
+In applied machine learning, we generally use k-fold cross-validation to repeatedly split our data into randomly-sampled training and test sets and, in doing so, prevent overfitting. The problem with using this approach when dealing with time-series data, however, is that it requires individual observations to be independent of one another. Though several prominent statisticians have still found [uses for cross-validation in this context](https://robjhyndman.com/hyndsight/tscv/), we prefer to use the current gold standard for time-series forecasting: forward chaining (i.e., walk-forward validation, rolling window analysis, rolling forecast).
+
+The basic steps in this process are as follows:
+* The user defines a *window size* (the number of time periods that fall within our 'window'; called *span* in our model] and begins by selecting a training / test set starting at the beginning of the time series.
+* The model makes a prediction for the next time step.
+* The prediction is stored or evaluated against the known value.
+* The window slides forward to the next period in which we have known values and the process is repeated.
+
+Here's a visual to describe this approach:
 ![Forward Chain Example](https://i.stack.imgur.com/padg4.gif)
+
+
+To predict acquired customers over time, we will create two separate GRU layers and merge them into one ensembled model:
+* **Endogenous Layer** - Uses lagged time-series variables to construct a time-series model of acquired customers.
 * **Exogeneous Layer** - Uses the covariates listed above (GDP, etc.) to predict customer acquisitions over time.
 
-The final, ensembled model is weighted (using *yweight*) to empower users with the ability to control variate importance during the modeling process. The model's *predictions* (in-sample; IS) and *forecasts* (out-of-sample; OOS) are then visualized and presented with the model's IS and OOS MAPE terms for easy comparison.
+The final, ensembled model is weighted (using *yweight*) to empower users with the ability to control variate importance during the modeling process. The model's *predictions* (generated using out-of-sample observations so we can examine the OOS Mean Average Percent Error, or OOS MAPE) and *forecasts* (generated for future time periods in which we have no data) are then visualized and presented with the model's OOS MAPE terms for easy comparison.
 
 ## Repository Structure
 * **Part 1. Building Dual GRUs** - Build the GRUs cell-by-cell and show that they produce the correct visualizations and error terms.  
 * **Part 2. Optimizing Parameters & Forecasting Dish Subscribers** - Test parameter adjustments and create final forecasts for comparison against Professor Fader's 14.5% MAPE.
 
 ## Model Results
-Our ensembled GRU performs extremely well, consistently delivering a **< 7% out-of-sample MAPE** when forecasting over a similar time period. Based on these results, we'd prefer to use RNNs over the Weibull-Gamma when modeling time-series data with exogeneous covariates.
+Our ensembled GRU performs extremely well, consistently delivering a **< 8.5% out-of-sample MAPE** when forecasting over a two-year period. When this error term is compared to the Weibull-Gamma's 18% OOS MAPE, we'd clearly prefer to use GRUs over parametric methods when modeling time-series data with exogeneous covariates.
 
-Surprisingly, our OOS MAPE is consistently below our IS MAPE (~6% vs. ~10%). This may be somewhat explained by the way in which we tuned our modeling parameters: by optimizing for OOS fit and not IS fit, we may have helped our model to ignore unhelpful noise in our training sample. More investigation is needed, but these results certainly look promising.
-![Visual of Dual GRU Approach](http://i66.tinypic.com/2nqabz9.png)
+![Visual of Dual GRU Approach](http://imgur.com/hnBiI6Q)
 
-See **"Part 2..."** for more details on the final model.
+This visual was generated using the code in **"Part 2..."**.
 
 # Caveats
 Though our machine learning algorithm seems to have bested Professor Fader's parametric models in this test, there are a few important caveats that should be kept in mind: 
 * **This analysis includes additional covariates** - Professor Fader inspired my use of the Seasonality and Recession indicators, but the other features mentioned above were not tested in his study. Though these new covariates *were* tested in the Weibull-Gamma through our second in-class assignment (with a resulting 25% OOS MdAPE), it is difficult to directly compare Fader's original forecasts to those presented in this analysis. 
 * **Parametric models are useful for more than just forecasting** - Our neural network won't answer the same important questions as a well-built parametric model (i.e., how heterogeneous is our customer base?) 
+* **Parametric models may perform better than GRUs when working with small datasets** - RNNs shine when given a large number of observations, but parametric models are likely to perform better when you have a limited number of observations.
