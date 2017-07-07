@@ -43,7 +43,8 @@ The basic steps in this process are as follows:
 * The window slides forward to the next period in which we have known values and the process is repeated.
 
 Here's a visual to describe this approach:
-![Forward Chain Example](https://i.stack.imgur.com/padg4.gif)
+
+![Forward Chain Example](http://tinypic.com/r/2luqjat/9)
 
 
 To predict acquired customers over time, we will create two separate GRU layers and merge them into one ensembled model:
