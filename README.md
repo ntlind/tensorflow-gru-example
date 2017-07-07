@@ -34,7 +34,7 @@ To test these hypotheses, I pulled data from a variety of first and third-party 
   * **Seasonality** - Dish’s annual reports note that most subscriber activations occur in the second half of each calendar year. This covariate involves the inclusion of three separate indicators (one for Q1, one for Q2, and one for Q3). 
 
 ## Model Methodology
-In applied machine learning, we generally use k-fold cross-validation to repeatedly split our data into randomly-sampled training and test sets and, in doing so, prevent overfitting. The problem with using this approach when dealing with time-series data, however, is that it requires individual observations to be independent of one another. Though several prominent statisticians have still found [uses for cross-validation in this context](https://robjhyndman.com/hyndsight/tscv/), we prefer to use the current gold standard for time-series forecasting: forward chaining (i.e., walk-forward validation, rolling window analysis, rolling forecast).
+In applied machine learning, we generally use k-fold cross-validation to repeatedly split our data into randomly-sampled training and test sets and, in doing so, prevent overfitting. The problem with using this approach when dealing with time-series data, however, is that it requires individual observations to be independent of one another. Though several prominent statisticians have still found [uses for cross-validation in this context](https://robjhyndman.com/hyndsight/tscv/), we prefer to use the current gold standard for time-series forecasting: **walk-forward validation** (i.e., rolling window analysis, rolling forecast).
 
 The basic steps in this process are as follows:
 * The user defines a *window size* (the number of time periods that fall within our 'window'; called *span* in our model] and begins by selecting a training / test set starting at the beginning of the time series.
@@ -44,9 +44,13 @@ The basic steps in this process are as follows:
 
 Here's a visual to describe this approach:
 
-![Forward Chain Example](https://i.stack.imgur.com/padg4.gif)
+![Walk-Forward Validation Example](https://i.stack.imgur.com/padg4.gif)
 
+An alternative approach would be to use **forward chaining**, which has similiar mechanics but an expanding window.
 
+![Forward Chain Example](https://i.stack.imgur.com/fXZ6k.png)
+
+## GRU Layers
 To predict acquired customers over time, we will create two separate GRU layers and merge them into one ensembled model:
 * **Endogenous Layer** - Uses lagged time-series variables to construct a time-series model of acquired customers.
 * **Exogeneous Layer** - Uses the covariates listed above (GDP, etc.) to predict customer acquisitions over time.
