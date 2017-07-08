@@ -59,7 +59,7 @@ The final, ensembled model is weighted (using *yweight*) to empower users with t
 
 ## Repository Structure
 * **Part 1. Building Dual GRUs** - Build the GRUs cell-by-cell and show that they produce the correct visualizations and error terms.  
-* **Part 2. Optimizing Parameters & Forecasting Dish Subscribers** - Test parameter adjustments and create final forecasts for comparison against Professor Fader's 14.5% MAPE.
+* **Part 2. Optimizing Parameters & Forecasting Dish Subscribers** - Test parameter adjustments and create final forecasts for comparison against Professor Fader's 16% MAPE.
 
 ## Model Results
 Our ensembled GRU performs extremely well, consistently delivering a **7.9% out-of-sample MAPE** when forecasting over a two-year period. When this error term is compared to the Weibull-Gamma's 18% OOS MAPE, we'd clearly prefer to use GRUs over parametric methods when modeling time-series data with exogeneous covariates.
