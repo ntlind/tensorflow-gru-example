@@ -46,7 +46,7 @@ Here's a visual to describe this approach:
 
 ![Walk-Forward Validation Example](https://i.stack.imgur.com/padg4.gif)
 
-An alternative approach would be to use **forward chaining**, which has similiar mechanics but an expanding window.
+An alternative approach (to be tested at a later date) would be to use **forward chaining**, which has similiar mechanics but an expanding window.
 
 ![Forward Chain Example](https://i.stack.imgur.com/fXZ6k.png)
 
@@ -75,3 +75,6 @@ Despite these strong results, there are a few important caveats that should be k
 * **This analysis includes additional covariates** - Professor Fader inspired my use of the Seasonality and Recession indicators, but the other features mentioned above were not tested in his study. Though these new covariates *were* tested in the Weibull-Gamma through our second in-class assignment (with a resulting ~20% OOS MdAPE), it is difficult to directly compare Fader's original forecasts to those presented in this analysis. 
 * **Parametric models are useful for more than just forecasting** - Our neural network won't answer the same important questions as a well-built parametric model (i.e., how heterogeneous is our customer base?), which means that we may prefer parametric models to RNNs for their real-world applications.
 * **Parametric models may perform better than GRUs when working with small datasets** - RNNs shine when given a large number of observations, but parametric models are likely to perform better when you have a limited number of observations.
+
+# TODO
+* Take average of prediction samples, rather than choosing based on minimum error term (shouldn't make an impactful difference in this case, but may cause our parameter optimizations to overfit on the test set)
