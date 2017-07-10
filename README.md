@@ -76,5 +76,5 @@ Despite these strong results, there are a few important caveats that should be k
 * **Parametric models are useful for more than just forecasting** - Our neural network won't answer the same important questions as a well-built parametric model (i.e., how heterogeneous is our customer base?), which means that we may prefer parametric models to RNNs for their real-world applications.
 * **Parametric models may perform better than GRUs when working with small datasets** - RNNs shine when given a large number of observations, but parametric models are likely to perform better when you have a limited number of observations.
 
-# TODO
+# Next Steps
 * Take average of prediction samples, rather than choosing based on minimum error term (shouldn't make an impactful difference in this case, but may cause our parameter optimizations to overfit on the test set)
