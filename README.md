@@ -64,7 +64,7 @@ The final, ensembled model is weighted (using *yweight*) to empower users with t
 ## Model Results
 Our ensembled GRU performs extremely well, consistently delivering a **7.9% out-of-sample MAPE** when forecasting over a two-year period. When we compare this error term to the Weibull-Gamma's 18% OOS MAPE, we would prefer to use our ensembled model for forecasting purposes. 
 
-If you weren't already impressed, **Dish's recently-released new customer acquisition number for Q1 2017 was 547K, putting our forecast within <0.1% of the real-world observed value.**
+If you weren't already impressed, **Dish's recently-released new customer acquisition number for Q1 2017 was 547K, putting our forecast within <0.2% of the real-world observed value.**
 
 ![Visual of Final Model](http://i65.tinypic.com/315kjeu.png)
 
