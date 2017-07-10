@@ -62,7 +62,7 @@ The final, ensembled model is weighted (using *yweight*) to empower users with t
 * **Part 2. Optimizing Parameters & Forecasting Dish Subscribers** - Test parameter adjustments and create final forecasts for comparison against Professor Fader's 16% MAPE.
 
 ## Model Results
-Our ensembled GRU performs extremely well, consistently delivering a **7.9% out-of-sample MAPE** when forecasting over a two-year period. When we compare this error term to the Weibull-Gamma's 18% OOS MAPE, we'd clearly prefer to use our ensembled model to forecast new customer acquisitions. 
+Our ensembled GRU performs extremely well, consistently delivering a **7.9% out-of-sample MAPE** when forecasting over a two-year period. When we compare this error term to the Weibull-Gamma's 18% OOS MAPE, we would prefer to use our ensembled model for forecasting purposes. 
 
 If you weren't already impressed, **Dish's recently-released new customer acquisition number for Q1 2017 was 547K, putting our forecast within <0.1% of the real-world observed value.**
 
