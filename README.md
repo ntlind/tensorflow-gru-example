@@ -62,16 +62,16 @@ The final, ensembled model is weighted (using *yweight*) to empower users with t
 * **Part 2. Optimizing Parameters & Forecasting Dish Subscribers** - Test parameter adjustments and create final forecasts for comparison against Professor Fader's 16% MAPE.
 
 ## Model Results
-Our ensembled GRU performs extremely well, consistently delivering a **7.9% out-of-sample MAPE** when forecasting over a two-year period. When this error term is compared to the Weibull-Gamma's 18% OOS MAPE, we'd clearly prefer to use GRUs over parametric methods when modeling time-series data with exogeneous covariates.
+Our ensembled GRU performs extremely well, consistently delivering a **7.9% out-of-sample MAPE** when forecasting over a two-year period. When we compare this error term to the Weibull-Gamma's 18% OOS MAPE, we'd clearly prefer to use our ensembled model to forecast new customer acquisitions. 
 
-As if we weren't already impressed, **Dish's recently-released new customer acquisition number for Q1 2017 was 547K, putting our forecast within <0.5% of the real-world observed value.**
+If you weren't already impressed, **Dish's recently-released new customer acquisition number for Q1 2017 was 547K, putting our forecast within <0.1% of the real-world observed value.**
 
 ![Visual of Final Model](http://i65.tinypic.com/315kjeu.png)
 
 This visual was generated using the code in **"Part 2..."**.
 
 # Caveats
-Though our machine learning algorithm seems to have bested Professor Fader's parametric models in this test, there are a few important caveats that should be kept in mind: 
-* **This analysis includes additional covariates** - Professor Fader inspired my use of the Seasonality and Recession indicators, but the other features mentioned above were not tested in his study. Though these new covariates *were* tested in the Weibull-Gamma through our second in-class assignment (with a resulting 25% OOS MdAPE), it is difficult to directly compare Fader's original forecasts to those presented in this analysis. 
-* **Parametric models are useful for more than just forecasting** - Our neural network won't answer the same important questions as a well-built parametric model (i.e., how heterogeneous is our customer base?) 
+Despite these strong results, there are a few important caveats that should be kept in mind: 
+* **This analysis includes additional covariates** - Professor Fader inspired my use of the Seasonality and Recession indicators, but the other features mentioned above were not tested in his study. Though these new covariates *were* tested in the Weibull-Gamma through our second in-class assignment (with a resulting ~20% OOS MdAPE), it is difficult to directly compare Fader's original forecasts to those presented in this analysis. 
+* **Parametric models are useful for more than just forecasting** - Our neural network won't answer the same important questions as a well-built parametric model (i.e., how heterogeneous is our customer base?), which means that we may prefer parametric models to RNNs for their real-world applications.
 * **Parametric models may perform better than GRUs when working with small datasets** - RNNs shine when given a large number of observations, but parametric models are likely to perform better when you have a limited number of observations.
