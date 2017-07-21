@@ -78,3 +78,4 @@ Despite these strong results, there are a few important caveats that should be k
 
 # Next Steps
 * Take average of prediction samples, rather than choosing based on minimum error term (shouldn't make an impactful difference in this case, but may cause our parameter optimizations to overfit on the test set)
+* Scale after splitting into training / test sets to avoid leaking information to GRU
