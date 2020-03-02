@@ -66,8 +66,6 @@ Our ensembled GRU performs extremely well, consistently delivering a **7.9% out-
 
 If you weren't already impressed, **Dish's recently-released new customer acquisition number for Q1 2017 was 547K, putting our forecast within <0.2% of the real-world observed value.**
 
-![Visual of Final Model](http://i65.tinypic.com/315kjeu.png)
-
 This visual was generated using the code in **"Part 2..."**.
 
 # Caveats
